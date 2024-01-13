@@ -6,4 +6,3 @@ password = ''
 for text in rawResult:
     password += chr(text)
 
-print(password)
