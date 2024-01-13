@@ -9,3 +9,4 @@ for text in rawResult:
     password += chr(text)
 hpassword = cryptology.aes.encrypt(password)
 del password
+
