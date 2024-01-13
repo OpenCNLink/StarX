@@ -6,7 +6,7 @@ class DiscretizationRandom:
         self.y = [2]
         self.z = [3]
         self.u = []
-        for i in range(10000):
+        for i in range(4096):
             self.x.append(math.fmod(171 * self.x[i], 30269))
             self.y.append(math.fmod(170 * self.y[i], 30307))
             self.z.append(math.fmod(172 * self.z[i], 30323))
