@@ -11,3 +11,12 @@ for text in rawResult:
 hpassword = cryptology.aes.encrypt(password,cryptology.md5.get_md5(str(system.info.sysInfo)))
 hpassword = hpassword.decode('utf-8','ignore')
 del password
+
+server = ''
+try:
+    with open('firstopen') as x:
+        server = x.read()
+except FileNotFoundError:
+    server = input('StarX Server:')
+    with open('firstopen','w') as y:
+        y.write(server)
