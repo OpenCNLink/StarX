@@ -1,3 +1,4 @@
+import system.info
 import cryptology.discretization
 
 dr = cryptology.discretization.DiscretizationRandom(65, 122) 
