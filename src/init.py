@@ -38,5 +38,15 @@ while True:
             raise RuntimeError('Cannot client to StarX server')
         else:
             showLog.print('The connection to the server is normal')
+        import json
+        import urllib.request
+        handshake = {
+            'version':'0.1.0',
+            'token':hpassword
+        }
+        handshake = json.dump(handshake)
+        headers = {'Accept-Charset': 'utf-8', 'Content-Type': 'application/json'}
+        req = urllib.request.Request(url=server+'/api/v2/handshake', data=handshake, headers=headers, method='POST')
+        response = urllib.request.urlopen(req).read()
     except KeyboardInterrupt:
         network.proxy.switchProxy('127.0.0.1','2111',True)
