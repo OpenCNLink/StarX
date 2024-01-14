@@ -20,3 +20,8 @@ except FileNotFoundError:
     server = input('StarX Server:')
     with open('firstopen','w') as y:
         y.write(server)
+        
+print('StarX version 0.1.0 - Run on python')
+print('Token md5:{}'.format(cryptology.md5.get_md5(hpassword)))
+while True:
+    # mainloop
