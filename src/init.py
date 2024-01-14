@@ -51,6 +51,8 @@ while True:
             req = urllib.request.Request(url=server+'/api/v2/handshake', data=handshake, headers=headers, method='POST')
             response = urllib.request.urlopen(req).read()
         if not bool(response):raise RuntimeError('Cannot client to StarX server')
-        showLog.print('A daemon is being created')
+        from daemon.daemon import start as daemon
+        daemon()
+        showLog.print('A daemon is being created,From now on, please do not force out of StarX, or your computer may crash.')
     except KeyboardInterrupt:
         network.proxy.switchProxy('127.0.0.1','2111',True)
