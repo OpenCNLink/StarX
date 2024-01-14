@@ -4,5 +4,6 @@ import time
 sysInfo = {
     'StarX':True,
     'platform':sys.platform,
-    'unixtime':str(time.time())
+    'unixtime':str(time.time()),
+    'python':sys.version
 }

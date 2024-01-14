@@ -1,4 +1,5 @@
 import system.info
+import network.proxy
 import cryptology.aes
 import cryptology.md5
 import cryptology.discretization
@@ -21,7 +22,11 @@ except FileNotFoundError:
     with open('firstopen','w') as y:
         y.write(server)
         
-print('StarX version 0.1.0 - Run on python')
+print('StarX version 0.1.0 - Run on {}'.format(system.info.sysInfo.python))
 print('Token md5:{}'.format(cryptology.md5.get_md5(hpassword)))
 while True:
-    # mainloop
+    # mainloop.
+    try:
+        pass
+    except KeyboardInterrupt:
+        network.proxy.switchProxy('127.0.0.1','2111',True)
