@@ -25,7 +25,7 @@ except FileNotFoundError:
     with open('firstopen','w') as y:
         y.write(server)
         
-print('StarX version 0.1.0 - Run on {}'.format(system.info.sysInfo.python))
+print('StarX version 0.1.0 - Run on {}'.format(system.info.sysInfo.get('run')))
 print('Token md5:{}'.format(cryptology.md5.get_md5(hpassword)))
 print('Use Ctrl+C plus Return to exit.')
 while True:

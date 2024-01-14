@@ -5,5 +5,5 @@ sysInfo = {
     'StarX':True,
     'platform':sys.platform,
     'unixtime':str(time.time()),
-    'python':sys.version
+    'run':sys.version
 }
