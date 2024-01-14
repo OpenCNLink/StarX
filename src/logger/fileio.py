@@ -1,4 +1,4 @@
-def writeLog(text,filename='log.txt') -> bool:
+def writeLog(text,filename) -> bool:
     try:
         with open(filename,'a') as f:
             f.write(text)
