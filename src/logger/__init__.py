@@ -1,7 +1,7 @@
 import logger.fileio
 import logger.output
 
-class logger:
+class log:
     def __init__(self,filename='log.txt'):
         self.filename = filename
     
