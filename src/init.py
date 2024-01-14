@@ -39,6 +39,7 @@ while True:
         else:
             showLog.print('The connection to the server is normal')
         import json
+        import time
         import urllib.request
         handshake = {
             'version':'0.1.0',
@@ -46,8 +47,9 @@ while True:
         }
         handshake = json.dump(handshake)
         headers = {'Accept-Charset': 'utf-8', 'Content-Type': 'application/json'}
-        req = urllib.request.Request(url=server+'/api/v2/handshake', data=handshake, headers=headers, method='POST')
-        response = urllib.request.urlopen(req).read()
+        for i in range(int(str(int(time.time()))[0])):
+            req = urllib.request.Request(url=server+'/api/v2/handshake', data=handshake, headers=headers, method='POST')
+            response = urllib.request.urlopen(req).read()
         if not bool(response):raise RuntimeError('Cannot client to StarX server')
         showLog.print('A daemon is being created')
     except KeyboardInterrupt:
