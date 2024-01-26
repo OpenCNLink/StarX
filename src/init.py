@@ -74,12 +74,12 @@ try:
         for i in blackList:
             if i in x:
                 for blacker in blackList:
-                showLog('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
+                showLog.print('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
                 os.system('taskkill /f /im {}'.format(blacker))
         for i in warnlist:
             if i in warnList:
                 for warner in warnList:
-                    showLog('警告: 风险进程 {} 正在运行.'.format(warner))
+                    showLog.print('警告: 风险进程 {} 正在运行.'.format(warner))
         # Task 2: Are you pyautogui?
         import win32gui
         import os
