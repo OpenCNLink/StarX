@@ -38,6 +38,7 @@ try:
     except:
         import sys
         sys.exit()
+    import os
     import json
     import time
     import urllib.request
@@ -59,5 +60,17 @@ try:
     daemon()
     showLog.print('守护进程已创建，现在请不要关闭 StarX 否则这会导致您的电脑崩溃。')
     showLog.print('StarX 正在守护您的计算机！')   
+    blackList = ['QQPCTray.exe','QQPCRTP.exe','*.jpg.exe','*.png.exe','*.svg.exe','Netspy.exe']
+    warnList = ['wechat.exe','qq.exe','imeutil.exe','Mbbmanager.exe','Runouce.exe','Winmsg32.exe']
     while True:
-        #mainloop
+        # Task 1: 进程列表监控
+        x = os.popen('tasklist').read()
+        for i in blackList:
+            if i in x:
+                for blacker in blackList:
+                showLog('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
+                os.system('taskkill /f /im {}'.format(blacker))
+        for i in warnlist:
+            if i in warnList:
+                for warner in warnList:
+                    showLog('警告: 风险进程 {} 正在运行.'.format(warner))
