@@ -75,19 +75,19 @@ try:
         # Task 1: 进程列表监控
         def check():
             import os
-            x = os.popen('tasklist').read()
+            x = os.popen('tasklist').readlines()
             i = 0
             for i in blackList:
                 if i in x:
-                    for blacker in blackList:
-                        if blacker in x[i]:
+                    for j in blackList:
+                        if j in x[i]:
                             i += 1
                             showLog.print('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
                             os.system('taskkill /f /im {}'.format(blacker))
             for i in warnList:
                 if i in warnList:
                     for warner in warnList:
-                        if blacker in x[i]:
+                        if warner in x[i]:
                             i += 1
                             showLog.print('警告: 风险进程 {} 正在运行.'.format(warner))
             # Task 2: Are you pyautogui?
