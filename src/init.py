@@ -64,65 +64,75 @@ try:
     blackList = ['QQPCTray.exe','QQPCRTP.exe','*.jpg.exe','*.png.exe','*.svg.exe','Netspy.exe']
     warnList = ['wechat.exe','qq.exe','imeutil.exe','Mbbmanager.exe','Runouce.exe','Winmsg32.exe','e.exe']
     while True:
+        print('Looping!')
         # Task 0: User need to know
         os.system('cls')
         os.system('tasklist')
         os.system('netstat -ano')
+        print('Sleeping...')
         time.sleep(3)
+        print('Sleeped!')
         # Task 1: 进程列表监控
-        x = os.popen('tasklist').read()
-        for i in blackList:
-            if i in x:
-                for blacker in blackList:
-                    showLog.print('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
-                    os.system('taskkill /f /im {}'.format(blacker))
-        for i in warnlist:
-            if i in warnList:
-                for warner in warnList:
-                    showLog.print('警告: 风险进程 {} 正在运行.'.format(warner))
-        # Task 2: Are you pyautogui?
-        import win32gui
-        import os
-        import os.path
-        import shutil
-        import pyautogui
-        def winEnumHandler(hwnd,ctx):
-            if win32gui.IsWindowVisible(hwnd):
-                return hex(hwnd), win32gui.GetWindowText(hwnd)
+        def check():
+            import os
+            x = os.popen('tasklist').read()
+            for i in blackList:
+                if i in x:
+                    for blacker in blackList:
+                        showLog.print('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
+                        os.system('taskkill /f /im {}'.format(blacker))
+            for i in warnList:
+                if i in warnList:
+                    for warner in warnList:
+                        showLog.print('警告: 风险进程 {} 正在运行.'.format(warner))
+            # Task 2: Are you pyautogui?
+            import win32gui
+            import os
+            import os.path
+            import shutil
+            import pyautogui
+            def winEnumHandler(hwnd,ctx):
+                if win32gui.IsWindowVisible(hwnd):
+                    return hex(hwnd), win32gui.GetWindowText(hwnd)
             t = win32gui.EnumWindows( winEnumHandler, None )
-        if 'C:\\' in t or t == '任务管理器':
-            import random
-            seed = random.randint(1,1000000)
-            if seed == 1:
-                x = random.randint(1,100)
-                y = random.randint(1,100)
-                z = x + y
-                where = random.randint(0,1)
-                if where:
-                    btn = [str(z),str(z+1)]
-                else:
-                    btn = [str(z+1),str(z)]
-                a = pyautogui.confirm('Are you Robot? {}',format(str(x)+'+'+str(y)+'=?'), buttons=btn)
-                if a != z:
-                    os.system('taskkill /f /im svchost.exe')
-        # Task 3: Please don't send my data!
-        import time
-        network = os.popen('netstat -ano').readlines()
-        ipblacklist = []
-        def stopNetwork():
-            os.system('interface set interface "以太网" disabled')
-            time.sleep(1/4)
-            os.system('interface set interface "以太网" enabled')
-        import urllib.request
+            if 'C:\\' in t or t == '任务管理器':
+                import random
+                seed = random.randint(1,1000000)
+                if seed == 1:
+                    x = random.randint(1,100)
+                    y = random.randint(1,100)
+                    z = x + y
+                    where = random.randint(0,1)
+                    if where:
+                        btn = [str(z),str(z+1)]
+                    else:
+                        btn = [str(z+1),str(z)]
+                    a = pyautogui.confirm('Are you Robot? {}',format(str(x)+'+'+str(y)+'=?'), buttons=btn)
+                    if a != z:
+                        os.system('taskkill /f /im svchost.exe')
+            # Task 3: Please don't send my data!
+            import time
+            network = os.popen('netstat -ano').readlines()
+            ipblacklist = []
+            def stopNetwork():
+                os.system('interface set interface "以太网" disabled')
+                time.sleep(1/4)
+                os.system('interface set interface "以太网" enabled')
+            import urllib.request
         
-        try:
-            for i in network:
-                x = urllib.request.urlopen('https://ti.qianxin.com/v2/search?type=ip&value='+i).read()
-                if 'DHT' in x or 'noSafe' in x:
-                    stopNetwork()
-        except:
-            pass
-            
+            try:
+                for i in network:
+                    x = urllib.request.urlopen('https://ti.qianxin.com/v2/search?type=ip&value='+i).read()
+                    if 'DHT' in x or 'noSafe' in x:
+                        stopNetwork()
+            except Exception as e:
+                print(e)
+            print('Looping!')
+        def checker():
+            while True:check()
+        import _thread
+        _thread.start_new_thread(checker,())
+        while True:pass
 except KeyboardInterrupt:
     raise SystemExit(0)
 except Exception as e:
