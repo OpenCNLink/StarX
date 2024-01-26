@@ -74,8 +74,8 @@ try:
         for i in blackList:
             if i in x:
                 for blacker in blackList:
-                showLog.print('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
-                os.system('taskkill /f /im {}'.format(blacker))
+                    showLog.print('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
+                    os.system('taskkill /f /im {}'.format(blacker))
         for i in warnlist:
             if i in warnList:
                 for warner in warnList:
