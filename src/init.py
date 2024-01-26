@@ -28,38 +28,36 @@ except FileNotFoundError:
 print('StarX version 0.1.0 - Run on {}'.format(system.info.sysInfo.get('run')))
 print('Token md5:{}'.format(cryptology.md5.get_md5(hpassword)))
 print('Use Ctrl+C plus Return to exit.')
-while True:
-    showLog = logger.log()
+showLog = logger.log()
+try:
+    showLog.print('Starting StarX')
+    showLog.print('初始化:与服务器进行握手')
+    showLog.print('初始化在启动 StarX 之前，您需要关闭您的防病毒软件。如您完成关闭，请按下回车键.')
     try:
-        showLog.print('Starting StarX')
-        showLog.print('初始化:与服务器进行握手')
-        showLog.print('初始化在启动 StarX 之前，您需要关闭您的防病毒软件。如您完成关闭，请按下回车键.')
-        try:
-            input()
-        except:
-            import sys
-            sys.exit()
-        import json
-        import time
-        import urllib.request
-        handshake = {
-            'version':'0.1.0',
-            'token':hpassword
-        }
-        handshake = json.dumps(handshake)
-        handshake = handshake.encode('utf-8')  # 将字符串转换为字节流
-        headers = {'Accept-Charset': 'utf-8', 'Content-Type': 'application/json'}
-        try:
-            for i in range(int(str(int(time.time()))[0])):
-                req = urllib.request.Request(url=server+'/api/v2/handshake', data=handshake, headers=headers, method='POST')
-                response = urllib.request.urlopen(req).read()
-        except:
-            showLog.print('与服务器握手失败，现在以离线模式启动 StarX.')
+        input()
+    except:
+        import sys
+        sys.exit()
+    import json
+    import time
+    import urllib.request
+    handshake = {
+        'version':'0.1.0',
+        'token':hpassword
+    }
+    handshake = json.dumps(handshake)
+    handshake = handshake.encode('utf-8')  # 将字符串转换为字节流
+    headers = {'Accept-Charset': 'utf-8', 'Content-Type': 'application/json'}
+    try:
+        for i in range(int(str(int(time.time()))[0])):
+            req = urllib.request.Request(url=server+'/api/v2/handshake', data=handshake, headers=headers, method='POST')
+            response = urllib.request.urlopen(req).read()
+    except:
+        showLog.print('与服务器握手失败，现在以离线模式启动 StarX.')
         
-        from daemon.daemon import start as daemon
-        daemon()
-        showLog.print('守护进程已创建，现在请不要关闭 StarX 否则这会导致您的电脑崩溃。')
-        showLog.print('StarX 正在守护您的计算机！')
-        
-    except KeyboardInterrupt:
-        pass
+    from daemon.daemon import start as daemon
+    daemon()
+    showLog.print('守护进程已创建，现在请不要关闭 StarX 否则这会导致您的电脑崩溃。')
+    showLog.print('StarX 正在守护您的计算机！')   
+    while True:
+        #mainloop
