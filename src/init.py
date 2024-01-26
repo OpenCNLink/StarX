@@ -64,14 +64,12 @@ try:
     blackList = ['QQPCTray.exe','QQPCRTP.exe','*.jpg.exe','*.png.exe','*.svg.exe','Netspy.exe']
     warnList = ['wechat.exe','qq.exe','imeutil.exe','Mbbmanager.exe','Runouce.exe','Winmsg32.exe','e.exe']
     while True:
-        print('Looping!')
         # Task 0: User need to know
         os.system('cls')
         os.system('tasklist')
         os.system('netstat -ano')
-        print('Sleeping...')
         time.sleep(3)
-        print('Sleeped!')
+        showLog.print('StarX 正在守护您的计算机！')   
         # Task 1: 进程列表监控
         def check():
             import os
