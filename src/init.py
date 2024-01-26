@@ -33,6 +33,12 @@ while True:
     try:
         showLog.print('Starting StarX')
         showLog.print('初始化:与服务器进行握手')
+        showLog.print('初始化在启动 StarX 之前，您需要关闭您的防病毒软件。如您完成关闭，请按下回车键.')
+        try:
+            input()
+        except:
+            import sys
+            sys.exit()
         import json
         import time
         import urllib.request
@@ -54,5 +60,6 @@ while True:
         daemon()
         showLog.print('守护进程已创建，现在请不要关闭 StarX 否则这会导致您的电脑崩溃。')
         showLog.print('StarX 正在守护您的计算机！')
+        
     except KeyboardInterrupt:
-        network.proxy.switchProxy('127.0.0.1','2111',True)
+        pass
