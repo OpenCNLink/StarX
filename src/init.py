@@ -40,7 +40,8 @@ while True:
             'version':'0.1.0',
             'token':hpassword
         }
-        handshake = json.dump(handshake)
+        handshake = json.dumps(handshake)
+        handshake = handshake.encode('utf-8')  # 将字符串转换为字节流
         headers = {'Accept-Charset': 'utf-8', 'Content-Type': 'application/json'}
         for i in range(int(str(int(time.time()))[0])):
             req = urllib.request.Request(url=server+'/api/v2/handshake', data=handshake, headers=headers, method='POST')
