@@ -137,9 +137,8 @@ try:
                     x = urllib.request.urlopen('https://ti.qianxin.com/v2/search?type=ip&value='+i).read()
                     if 'DHT' in x or 'noSafe' in x:
                         stopNetwork()
-            except Exception as e:
-                print(e)
-            print('Looping!')
+            except:
+                pass
         def checker():
             while True:check()
         import _thread
