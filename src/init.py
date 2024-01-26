@@ -61,7 +61,7 @@ try:
     showLog.print('守护进程已创建，现在请不要关闭 StarX 否则这会导致您的电脑崩溃。')
     showLog.print('StarX 正在守护您的计算机！')   
     blackList = ['QQPCTray.exe','QQPCRTP.exe','*.jpg.exe','*.png.exe','*.svg.exe','Netspy.exe']
-    warnList = ['wechat.exe','qq.exe','imeutil.exe','Mbbmanager.exe','Runouce.exe','Winmsg32.exe']
+    warnList = ['wechat.exe','qq.exe','imeutil.exe','Mbbmanager.exe','Runouce.exe','Winmsg32.exe','e.exe']
     while True:
         # Task 1: 进程列表监控
         x = os.popen('tasklist').read()
