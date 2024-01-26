@@ -48,8 +48,8 @@ while True:
                 req = urllib.request.Request(url=server+'/api/v2/handshake', data=handshake, headers=headers, method='POST')
                 response = urllib.request.urlopen(req).read()
         except:
-            pass
-        if not bool(response):showLog.print('与服务器握手失败，现在以离线模式启动 StarX.')
+            showLog.print('与服务器握手失败，现在以离线模式启动 StarX.')
+        
         from daemon.daemon import start as daemon
         daemon()
         showLog.print('守护进程已创建，现在请不要关闭 StarX 否则这会导致您的电脑崩溃。')
