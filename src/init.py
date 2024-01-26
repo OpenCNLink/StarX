@@ -76,15 +76,20 @@ try:
         def check():
             import os
             x = os.popen('tasklist').read()
+            i = 0
             for i in blackList:
                 if i in x:
                     for blacker in blackList:
-                        showLog.print('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
-                        os.system('taskkill /f /im {}'.format(blacker))
+                        if blacker in x[i]:
+                            i += 1
+                            showLog.print('发现被拉黑进程:{}，已进行 结束 操作.'.format(blacker))
+                            os.system('taskkill /f /im {}'.format(blacker))
             for i in warnList:
                 if i in warnList:
                     for warner in warnList:
-                        showLog.print('警告: 风险进程 {} 正在运行.'.format(warner))
+                        if blacker in x[i]:
+                            i += 1
+                            showLog.print('警告: 风险进程 {} 正在运行.'.format(warner))
             # Task 2: Are you pyautogui?
             import win32gui
             import os
