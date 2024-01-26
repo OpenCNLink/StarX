@@ -96,11 +96,19 @@ try:
             import os.path
             import shutil
             import pyautogui
-            def winEnumHandler(hwnd, ctx):
-                if win32gui.IsWindowVisible(hwnd):
-                    return [hex(hwnd), win32gui.GetWindowText(hwnd)]
+            import ctypes
+            try:
+                # 定义回调函数
+                def winEnumHandler(hwnd, ctx):
+                    if win32gui.IsWindowVisible(hwnd):
+                        ctx.append([hex(hwnd), win32gui.GetWindowText(hwnd)])
 
-            t = win32gui.EnumWindows(winEnumHandler, None)
+                # 创建整数类型的上下文对象
+                ctx = ctypes.cast(ctypes.c_int(0), ctypes.POINTER(ctypes.c_int))
+
+                # 调用EnumWindows函数
+                t = win32gui.EnumWindows(winEnumHandler, ctx)
+            except:t = 'error'
             if 'C:\\' in t or t == '任务管理器':
                 import random
                 seed = random.randint(1,1000000)
