@@ -30,6 +30,7 @@ print('Token md5:{}'.format(cryptology.md5.get_md5(hpassword)))
 print('Use Ctrl+C plus Return to exit.')
 showLog = logger.log()
 try:
+    showLog.print('如果您要使用国产系软件又不想暴露隐私，这是一个不错的选择。')
     showLog.print('Starting StarX')
     showLog.print('初始化:与服务器进行握手')
     showLog.print('初始化在启动 StarX 之前，您需要关闭您的防病毒软件。如您完成关闭，请按下回车键.')
@@ -63,6 +64,11 @@ try:
     blackList = ['QQPCTray.exe','QQPCRTP.exe','*.jpg.exe','*.png.exe','*.svg.exe','Netspy.exe']
     warnList = ['wechat.exe','qq.exe','imeutil.exe','Mbbmanager.exe','Runouce.exe','Winmsg32.exe','e.exe']
     while True:
+        # Task 0: User need to know
+        os.system('cls')
+        os.system('tasklist')
+        os.system('netstat -ano')
+        time.sleep(3)
         # Task 1: 进程列表监控
         x = os.popen('tasklist').read()
         for i in blackList:
@@ -116,3 +122,4 @@ try:
                     stopNetwork()
         except:
             pass
+        
