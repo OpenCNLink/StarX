@@ -96,10 +96,11 @@ try:
             import os.path
             import shutil
             import pyautogui
-            def winEnumHandler(hwnd,ctx):
+            def winEnumHandler(hwnd, ctx):
                 if win32gui.IsWindowVisible(hwnd):
-                    return hex(hwnd), win32gui.GetWindowText(hwnd)
-            t = win32gui.EnumWindows( winEnumHandler, None )
+                    return [hex(hwnd), win32gui.GetWindowText(hwnd)]
+
+            t = win32gui.EnumWindows(winEnumHandler, None)
             if 'C:\\' in t or t == '任务管理器':
                 import random
                 seed = random.randint(1,1000000)
