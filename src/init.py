@@ -31,13 +31,8 @@ print('Use Ctrl+C plus Return to exit.')
 while True:
     showLog = logger.log()
     try:
-        showLog.print('Started StarX')
-        showLog.print('Checking server......')
-        x = network.http.canopen(server)
-        if not x:
-            raise RuntimeError('Cannot client to StarX server')
-        else:
-            showLog.print('The connection to the server is normal')
+        showLog.print('Starting StarX')
+        showLog.print('初始化:与服务器进行握手')
         import json
         import time
         import urllib.request
@@ -53,6 +48,7 @@ while True:
         if not bool(response):raise RuntimeError('Cannot client to StarX server')
         from daemon.daemon import start as daemon
         daemon()
-        showLog.print('A daemon is being created,From now on, please do not force out of StarX, or your computer may crash.')
+        showLog.print('守护进程已创建，现在请不要关闭 StarX 否则这会导致您的电脑崩溃。')
+        showLog.print('StarX 正在守护您的计算机！')
     except KeyboardInterrupt:
         network.proxy.switchProxy('127.0.0.1','2111',True)
