@@ -112,7 +112,7 @@ try:
         try:
             for i in network:
                 x = urllib.request.urlopen('https://ti.qianxin.com/v2/search?type=ip&value='+i).read()
-                if 'DHT' or 'noSafe' in x:
+                if 'DHT' in x or 'noSafe' in x:
                     stopNetwork()
         except:
             pass
